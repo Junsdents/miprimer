@@ -1,1 +1,271 @@
+# SmileQuest Kids – Diseño de app móvil educativa (0–10 años)
 
+## 1) Concepto general
+**Objetivo:** crear hábitos diarios de higiene bucal en niños/as menores de 10 años a través de juego, rutina guiada y refuerzo positivo.
+
+**Tono de la app:** divertido, tierno, aventurero, cero clínico.
+
+**Públicos:**
+- **Niño/a:** experiencia principal de juego y cepillado.
+- **Padre/madre/cuidador:** seguimiento, configuración y educación.
+
+**Promesa de valor:** “Aprender a cepillarse jugando todos los días”.
+
+---
+
+## 2) Sistema visual (UI Kit)
+
+### Paleta de color
+- **Primario (acciones):** Azul pastel `#7CC7FF`
+- **Salud/éxito:** Verde menta `#8EE3B1`
+- **Logros/estrellas:** Amarillo `#FFE27A`
+- **Recompensas/acento:** Coral `#FF9E8A`
+- **Fondo:** `#F7FAFC`
+- **Texto principal:** `#2D3748`
+- **Texto secundario:** `#4A5568`
+- **Gris inactivo:** `#CBD5E0`
+
+### Tipografía sugerida
+- **Título:** Fredoka Bold (fallback: Nunito ExtraBold)
+- **Cuerpo:** Nunito SemiBold
+- **Botones:** Baloo 2 / Nunito Bold
+- **Tamaño mínimo recomendado:** 16px (niños + accesibilidad)
+
+### Componentes base
+- Bordes redondeados: `24px` (tarjetas), `28px` (botón principal)
+- Sombras suaves: `0 8px 24px rgba(45,55,72,0.10)`
+- Íconos simples, rellenos, estilo cartoon
+- Botones grandes (alto mínimo: `56px`)
+- Targets táctiles: mínimo `44x44`
+
+### Layout móvil
+- Frame objetivo: **375x812**
+- Márgenes laterales: 20px
+- Grid recomendado: 4 columnas flexibles
+- Safe areas para notch/home indicator
+
+---
+
+## 3) Mascota y narrativa
+- **Mascota principal:** “Dienti”, un dientecito sonriente con capa de héroe.
+- **Rol:** guía al niño durante cepillado y celebración.
+- **Microcopy amigable:**
+  - “¡Vamos a derrotar a los bichitos!”
+  - “¡Súper trabajo, campeón/a del cepillo!”
+  - “Te ganaste estrellas brillantes ✨”
+
+---
+
+## 4) Arquitectura de navegación
+- Bottom nav (modo niño): **Inicio | Misiones | Juegos | Recompensas**
+- Acceso “Zona padres” con PIN desde ícono superior derecho.
+- Flujo principal:
+  1. Onboarding
+  2. Crear perfil niño
+  3. Dashboard
+  4. Sesión de cepillado
+  5. Recompensa inmediata
+  6. Repetición diaria + progreso
+
+---
+
+## 5) Diseño de pantallas requeridas
+
+## 1️⃣ Bienvenida / Onboarding
+**Objetivo:** enganchar en menos de 5 segundos.
+
+**Estructura:**
+- Fondo pastel con nubes/estrellas suaves.
+- Ilustración grande de Dienti animado.
+- Título: “¡Tu sonrisa tiene superpoderes!”
+- Subtexto breve: “Aprende a cuidar tus dientes jugando cada día.”
+- CTA principal (full width): **“Comenzar”** (azul #7CC7FF)
+- CTA secundario pequeño: “Soy mamá/papá”
+
+**Interacción:** animación bounce del botón y parpadeo de estrellitas.
+
+## 2️⃣ Inicio / Dashboard
+**Objetivo:** activar cepillado del momento.
+
+**Bloques principales:**
+- Header con saludo: “Hola, Leo 👋” + avatar.
+- Tarjeta “Progreso de hoy” con barra visual.
+- Botón hero: **“Cepillar ahora”** (56–64px alto).
+- Módulo “Misiones del día” (3–5 tareas).
+- Contador de estrellas/monedas acumuladas.
+
+**Gamificación inmediata:** mostrar “Te faltan 2 min para tu racha perfecta”.
+
+## 3️⃣ Pantalla de Cepillado con Cronómetro
+**Objetivo:** guiar técnica + mantener motivación 3 minutos.
+
+**Elementos clave:**
+- Temporizador circular grande: **03:00**
+- División por zonas de boca (6 zonas ilustradas).
+- Personaje cepillando en espejo al niño.
+- Instrucciones por voz/texto simple:
+  1. “Arriba por fuera”
+  2. “Arriba por dentro”
+  3. “Abajo por fuera”
+  4. “Abajo por dentro”
+  5. “Muelitas”
+  6. “Lengua suave”
+
+**UX de sesión:**
+- Vibración suave al cambiar de zona.
+- Efectos visuales tipo sparkles.
+- Botón pausa para padres (protegido).
+
+**Final de sesión:**
+- Confeti + estrellas
+- Mensaje: “¡Boca brillante desbloqueada!”
+- Recompensa instantánea (stickers/monedas)
+
+## 4️⃣ Misiones / Hábitos
+**Objetivo:** checklist muy visual y fácil.
+
+**Checklist con íconos grandes:**
+- ✅ Cepillado mañana
+- ✅ Cepillado noche
+- ✅ Hilo dental
+- ✅ Evitar dulces
+- ✅ Tomar agua
+
+**Estados:**
+- Completado: verde menta + check animado.
+- Pendiente: gris suave + borde punteado.
+
+## 5️⃣ Calendario de Progreso
+**Objetivo:** mostrar consistencia y rachas.
+
+**Vista mensual:**
+- Cada día con badge de estrellas:
+  - ⭐ 1 estrella = 1 cepillado
+  - ⭐⭐ 2 estrellas = 2 cepillados
+  - ⭐⭐⭐ 3 estrellas = rutina completa
+- Días incompletos: gris `#CBD5E0`
+- Racha visible arriba: “Racha actual: 7 días 🔥”
+
+**Extra:** botón “Ver semana” para lectura rápida de padres.
+
+## 6️⃣ Recompensas / Gamificación
+**Objetivo:** reforzar hábito con premios virtuales sanos.
+
+**Sistema:**
+- Moneda: estrellas brillantes
+- Tienda visual:
+  - Stickers
+  - Accesorios (sombrero, gafas, capa)
+  - Fondos para avatar
+- Logros:
+  - “3 días seguidos”
+  - “Semana perfecta”
+  - “Maestro del hilo dental”
+
+**Regla:** recompensas frecuentes al inicio, luego progresión gradual.
+
+## 7️⃣ Juegos educativos (niños)
+**Objetivo:** aprendizaje por micro-juegos de 1–3 minutos.
+
+**Minijuegos sugeridos:**
+1. **Atrapa saludables**: sumar frutas/agua, evitar dulces.
+2. **Limpia caries**: cepillar manchas en dientes cartoon.
+3. **Puzzle dental**: armar boca feliz por piezas.
+
+**Diseño:**
+- Dificultad progresiva por edad.
+- Feedback instantáneo (sonido + estrellas).
+- Sesiones cortas para evitar fatiga.
+
+## 8️⃣ Tips para padres
+**Objetivo:** educar sin saturar.
+
+**Formato:** tarjetas deslizables con iconografía.
+- Técnica correcta (ángulo y tiempo)
+- Pasta con flúor según edad
+- Alimentos recomendados
+- Frecuencia de visita al odontopediatra
+
+**Lenguaje:** claro, profesional y accionable.
+
+## 9️⃣ Panel para padres
+**Objetivo:** seguimiento y control de hábitos.
+
+**Módulos:**
+- Historial de cepillado (día/semana/mes)
+- Estadísticas semanales (% cumplimiento)
+- Calendario de progreso
+- Configuración de recordatorios (mañana/noche)
+- Gestión de perfiles de hijos
+
+**Seguridad:** acceso por PIN o biometría.
+
+---
+
+## 6) Reglas UX para niños pequeños
+- Máximo 1 acción principal por pantalla.
+- Frases cortas (5–8 palabras ideal).
+- Reforzar con audio + visual (no solo texto).
+- Evitar menús complejos y scroll largo.
+- Siempre mostrar progreso (“te faltan 20 segundos”).
+
+---
+
+## 7) Gamificación y economía de recompensas
+- **Loop diario:** Cepillar → ganar estrellas → desbloquear ítems.
+- **Loop semanal:** completar misiones → logro especial.
+- **Loop mensual:** mantener racha → trofeo premium.
+
+**Balance recomendado:**
+- 1 cepillado = 10 estrellas
+- 2 cepillados/día = bonus +10
+- Rutina completa diaria = sticker raro (probabilidad)
+
+---
+
+## 8) Sonido, animación y accesibilidad
+- Efectos suaves, no estridentes.
+- Narración opcional para prelectores.
+- Contraste AA en textos clave.
+- Modo “sin sonido” para uso nocturno.
+- Subtítulos en instrucciones habladas.
+
+---
+
+## 9) Roadmap MVP (8–10 semanas)
+**Fase 1 (MVP):**
+- Onboarding
+- Dashboard
+- Cepillado con timer guiado
+- Misiones básicas
+- Calendario mensual
+- Panel de padres básico
+
+**Fase 2:**
+- Recompensas avanzadas + avatar
+- 2 minijuegos
+- Recordatorios inteligentes
+
+**Fase 3:**
+- Personalización por edad
+- Más contenido educativo para padres
+- Reportes y exportación de progreso
+
+---
+
+## 10) Microcopys listos para usar
+- “¡Hora de brillar!”
+- “3 minutos y dientes felices 😁”
+- “¡Genial! Sumaste 10 estrellas.”
+- “Tu racha está creciendo 🔥”
+- “Misiones completas = premio sorpresa”
+
+---
+
+## 11) Entregables de diseño sugeridos
+- Design system (colores, tipografías, botones, cards)
+- Wireframes low-fi (9 pantallas)
+- UI hi-fi (375x812)
+- Prototipo clickable (Figma)
+- Kit de ilustraciones de mascota
+- Especificaciones para desarrollo (tokens + estados)
