@@ -1,1 +1,309 @@
+# SmileQuest Kids — Especificación funcional UI (con botones y layout exacto)
+
+Formato objetivo: **mobile 375x812**  
+Estilo obligatorio: **cartoon, pastel, amigable, no clínico**
+
+---
+
+## 1) Sistema visual obligatorio (aplica a TODAS las pantallas)
+
+### Colores
+- Azul principal: `#7CC7FF`
+- Verde salud: `#8EE3B1`
+- Amarillo logros: `#FFE27A`
+- Coral recompensas: `#FF9E8A`
+- Fondo: `#F7FAFC`
+- Texto principal: `#2D3748`
+- Inactivo/pendiente: `#CBD5E0`
+
+### Tipografía
+- Títulos: Fredoka/Baloo (fallback Nunito Bold)
+- Cuerpo: Nunito SemiBold
+- Tamaño mínimo: 16px
+
+### Componentes funcionales globales
+- **Botón primario**
+  - Alto: 56px
+  - Radio: 28px
+  - Fondo: `#7CC7FF`
+  - Texto: 20px bold blanco
+  - Sombra: `0 8px 24px rgba(45,55,72,.10)`
+- **Botón secundario**
+  - Alto: 48px
+  - Radio: 24px
+  - Fondo: blanco
+  - Borde: 2px `#7CC7FF`
+- **Tarjetas**
+  - Radio: 24px
+  - Padding: 16px
+- **Íconos**: simples y grandes (mín. 24px)
+- **Touch target mínimo**: 44x44
+
+### Grid / spacing
+- Safe area top/bottom respetada
+- Márgenes laterales: 20px
+- Separación vertical entre bloques: 12–16px
+
+---
+
+## 2) Navegación funcional
+
+### Modo niño (bottom nav fijo)
+- Inicio | Misiones | Juegos | Recompensas
+- Alto barra: 72px
+- Ícono 24px + label 12px
+
+### Zona padres
+- Botón superior derecho con candado 🔒
+- Abre modal PIN (4 dígitos)
+- Si PIN correcto → Panel padres
+
+---
+
+## 3) Pantalla 1 — Bienvenida / Onboarding (funcional)
+
+### Layout (de arriba a abajo)
+1. Header vacío con logo pequeño (opcional)
+2. Mascota “Dienti” (ilustración central grande)
+3. Título: “¡Tu sonrisa tiene superpoderes!”
+4. Subtexto corto
+5. **Botón primario full-width:** `Comenzar`
+6. **Botón secundario:** `Soy mamá/papá`
+
+### Botones y acciones
+- `Comenzar` → flujo crear perfil niño
+- `Soy mamá/papá` → configuración recordatorios inicial
+
+### Forma visual exacta
+- Ambos botones centrados, ancho: 100% del contenedor
+- Radio de esquinas: 28px (primario), 24px (secundario)
+
+---
+
+## 4) Pantalla 2 — Inicio / Dashboard (funcional)
+
+### Layout
+1. Header: avatar niño (izq) + botón zona padres 🔒 (der)
+2. Tarjeta “Progreso de hoy” con barra
+3. **Botón hero primario:** `Cepillar ahora`
+4. Tarjeta “Misiones del día” (lista corta)
+5. Tarjeta “Estrellas acumuladas”
+6. Bottom nav fijo
+
+### Botones y acciones
+- `Cepillar ahora` → Pantalla de Cepillado (timer)
+- Tap en tarjeta misiones → Pantalla Misiones
+- Tap en estrellas/recompensas → Pantalla Recompensas
+- Tap 🔒 → PIN padres
+
+### Forma
+- Botón hero ocupa 100% ancho útil, alto 64px, radio 30px
+
+---
+
+## 5) Pantalla 3 — Cepillado con cronómetro (funcional)
+
+### Layout
+1. Header con botón atrás (izq) y ayuda (der)
+2. Timer circular grande: `03:00`
+3. Texto zona actual: “Zona 1/6 - Arriba por fuera”
+4. Personaje espejo animado
+5. Barra mini progreso por zonas (6 puntos)
+6. Fila botones:
+   - **Secundario:** `Pausa`
+   - **Primario:** `Terminar` (se habilita al completar mínimo válido)
+
+### Lógica funcional
+- Total: 180 s
+- 6 zonas x 30 s
+- Cada 30 s: cambio automático de zona + vibración + audio corto
+- Validación:
+  - Sesión válida: >=150 s y >=5 zonas
+  - Sesión perfecta: 180 s y 6 zonas
+
+### Acciones al terminar
+- Mostrar modal celebración:
+  - Título: “¡Boca brillante desbloqueada!”
+  - Estrellas ganadas
+  - **Botón primario:** `Continuar`
+
+---
+
+## 6) Pantalla 4 — Misiones / Hábitos (funcional)
+
+### Layout
+1. Header con título “Misiones de hoy”
+2. Checklist de 5 tarjetas (1 por hábito)
+3. CTA inferior si completa todo
+4. Bottom nav
+
+### Ítems + controles
+- Cepillado mañana → switch automático (readonly niño)
+- Cepillado noche → switch automático
+- Hilo dental → toggle manual
+- Evitar dulces → toggle manual
+- Tomar agua → toggle manual
+
+### Botones
+- **Primario (aparece con 5/5):** `Reclamar premio`
+- `Reclamar premio` → suma bonus y abre recompensas
+
+### Forma
+- Cada ítem en tarjeta redondeada 24px con ícono grande a la izquierda y switch a la derecha
+
+---
+
+## 7) Pantalla 5 — Calendario de progreso (funcional)
+
+### Layout
+1. Header: mes actual + flechas `<` `>`
+2. Banda de racha: “Racha actual: X días 🔥”
+3. Grilla mensual
+4. Leyenda de estrellas
+5. Botón secundario: `Ver semana`
+
+### Reglas visuales por día
+- ⭐ (1 cepillado)
+- ⭐⭐ (2 cepillados)
+- ⭐⭐⭐ (rutina completa)
+- Gris si incompleto
+
+### Botones
+- `<` y `>` cambian mes
+- `Ver semana` abre resumen semanal para padres
+
+---
+
+## 8) Pantalla 6 — Recompensas / Gamificación (funcional)
+
+### Layout
+1. Header con saldo: “⭐ 120”
+2. Tabs: Stickers | Accesorios | Fondos
+3. Grid de ítems desbloqueables
+4. Bottom nav
+
+### Botones
+- En cada ítem bloqueado: `Canjear` (botón coral)
+- En ítem desbloqueado: `Equipar`
+- Confirmación modal:
+  - Texto: “¿Canjear 30 estrellas?”
+  - Botones: `Cancelar` / `Confirmar`
+
+### Reglas
+- Sin saldo suficiente: botón deshabilitado gris
+- Nunca permitir saldo negativo
+
+---
+
+## 9) Pantalla 7 — Juegos educativos (funcional)
+
+### Layout
+1. Header: “Juegos dentales”
+2. Tarjetas de minijuegos (3)
+3. Cada tarjeta con imagen + dificultad + botón
+4. Bottom nav
+
+### Botones por tarjeta
+- `Jugar` → inicia minijuego
+- Al finalizar:
+  - Modal resultado con puntaje
+  - **Botón primario:** `Cobrar estrellas`
+  - **Botón secundario:** `Volver a jugar`
+
+### Minijuegos MVP
+- Atrapa saludables
+- Limpia caries
+- Puzzle dental
+
+---
+
+## 10) Pantalla 8 — Tips para padres (funcional)
+
+### Layout
+1. Header + filtro por categoría
+2. Lista de tarjetas informativas
+3. Botón flotante opcional guardar favoritos
+
+### Botones en tarjetas
+- `Leer más`
+- `Guardar`
+
+### Acciones
+- `Leer más` abre detalle
+- `Guardar` mueve a favoritos
+
+---
+
+## 11) Pantalla 9 — Panel para padres (funcional)
+
+### Layout
+1. Header: perfil padre/madre
+2. KPIs semanales (cumplimiento, sesiones, racha)
+3. Bloque calendario resumido
+4. Bloque recordatorios
+5. Gestión de hijos
+
+### Botones clave
+- `Editar recordatorios`
+- `Agregar hijo`
+- `Ver historial completo`
+- `Exportar resumen` (fase 2)
+
+### Seguridad
+- Entrada por PIN
+- Cierre automático tras inactividad (2 min)
+
+---
+
+## 12) Recordatorios (funcional)
+
+### Default
+- Mañana 07:00
+- Noche 20:00
+
+### Reglas
+- Si no se registra sesión en 30 min → segundo aviso
+- Mensajes:
+  - “¡Hora de brillar! 🪥✨”
+  - “Te faltan 3 minutos para ganar estrellas”
+
+### Botones en configuración
+- `Activar/Desactivar`
+- `Cambiar hora`
+- `Guardar cambios`
+
+---
+
+## 13) Estados funcionales (obligatorios)
+
+### Empty states
+- Sin historial: mostrar mascota + botón `Comenzar primer cepillado`
+
+### Error states
+- Sin internet: banner superior + texto “Guardaremos tu progreso offline”
+- Fallo guardado: botón `Reintentar`
+
+### Loading
+- Skeleton en tarjetas y spinner suave en timer/carga de juegos
+
+---
+
+## 14) Criterios de aceptación globales
+
+1. Todos los CTAs principales visibles sin scroll crítico en 375x812.
+2. Botones primarios siempre con alto >=56px y radio >=24px.
+3. Flujo diario completo posible en <4 taps desde Inicio.
+4. Timer mantiene precisión por segundo sin congelarse.
+5. Registro offline disponible para sesiones y hábitos.
+6. Zona padres protegida por PIN.
+
+---
+
+## 15) Checklist listo para construir
+
+- [ ] Wireframe hi-fi de cada pantalla con posiciones exactas de botones.
+- [ ] Componentes reutilizables (PrimaryButton, SecondaryButton, HabitCard, RewardCard).
+- [ ] Definir estados de botón: normal, pressed, disabled, loading.
+- [ ] Eventos analytics de todos los taps de CTA.
+- [ ] QA visual para radios/sombras/tamaños en 375x812.
 
